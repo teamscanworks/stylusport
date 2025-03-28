@@ -1,0 +1,27 @@
+# Compiled build artifacts
+/target/
+
+# Cargo.lock for libraries (but keep it for applications)
+/Cargo.lock
+
+# Rust's custom compiler temp files
+**/*.rs.bk
+
+# VSCode settings
+.vscode/
+
+# MacOS system files
+.DS_Store
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Temporary files created by editors
+*~
+
+# Rust documentation
+/doc/
+
+# Backup files
+*.bak

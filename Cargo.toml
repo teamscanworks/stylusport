@@ -1,0 +1,9 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/anchor_parser",
+    "crates/anchor_normalizer",
+    "crates/ir_builder",
+    "crates/explain_engine",
+    "crates/stylus_generator",
+]
