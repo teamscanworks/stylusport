@@ -2,14 +2,28 @@
 name = "anchor_parser"
 version = "0.1.0"
 edition = "2021"
+keywords = ["anchor", "solana", "parser", "ast"]
+categories = ["development-tools", "parser-implementations"]
 
 [dependencies]
-quote = "1.0"
-insta = { version = "1.34.0", features = ["yaml"] }
-anchor-syn = { git = "https://github.com/coral-xyz/anchor", branch = "master" }
+anchor-syn = "0.31.0"  # Use the version compatible with your Anchor version
+quote = "1.0.40"
+syn = { version = "2.0", features = ["full"] }
+utils = { path = "../utils" }
 
 [dev-dependencies]
-proc-macro2 = "1.0"
-syn = { version = "2.0.100", features = [
-    "full",
-] } # Ensure this version matches with anchor-syn's version
+tempfile = "3.3.0"     # For creating temporary files in tests
+
+[[bin]]
+name = "anchor-parser"
+path = "src/main.rs"
+
+[lib]
+name = "anchor_parser"
+path = "src/lib.rs"
+test = true  # Enables tests for the library
+
+
+[[test]]
+name = "anchor_parser_tests"
+path = "src/lib.rs"

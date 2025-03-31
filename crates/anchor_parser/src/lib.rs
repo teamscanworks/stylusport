@@ -1,14 +1,11 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+//! Anchor Program Parser library
+//!
+//! This library provides utilities for parsing and displaying
+//! the AST of Anchor programs.
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub mod display;
+pub mod parser;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+// Re-export commonly used items for convenience
+pub use display::print_ast;
+pub use parser::parse_file;
