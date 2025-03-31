@@ -17,11 +17,22 @@
 Thumbs.db
 ehthumbs.db
 
-# Temporary files created by editors
-*~
-
 # Rust documentation
 /doc/
 
 # Backup files
 *.bak
+
+# Coverage information
+lcov.info
+*.profraw
+coverage/
+*.gcda
+*.gcno
+
+
+# Temporary files
+*.tmp
+
+# Temporary files created by editors
+*~
