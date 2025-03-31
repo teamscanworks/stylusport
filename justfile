@@ -57,7 +57,12 @@ test-doc:
 # Generate coverage report for workspace
 coverage:
     cargo llvm-cov --workspace --lcov --output-path lcov.info
-    cargo llvm-cov report --workspace
+    cargo llvm-cov report
+
+# Generate coverage for specific crate
+coverage-crate name:
+    cargo llvm-cov --package {{name}} --lcov --output-path lcov-{{name}}.info
+    cargo llvm-cov report --package {{name}}
 
 # Generate and open HTML coverage report
 coverage-html:
@@ -66,10 +71,11 @@ coverage-html:
     @# Cross-platform browser opening - tries each method
     @open target/llvm-cov/html/index.html 2>/dev/null || xdg-open target/llvm-cov/html/index.html 2>/dev/null || start target/llvm-cov/html/index.html
 
-# Generate coverage for specific crate
-coverage-crate name:
-    cargo llvm-cov --package {{name}} --lcov --output-path lcov-{{name}}.info
-    cargo llvm-cov report --package {{name}}
+# Generate and open HTML coverage report for specific crate
+coverage-crate-html name:
+    cargo llvm-cov --package {{name}} --html
+    @echo "Opening coverage report in browser..."
+    @open target/llvm-cov/html/index.html 2>/dev/null || xdg-open target/llvm-cov/html/index.html 2>/dev/null || start target/llvm-cov/html/index.html
 
 # -------------------------------
 # 🧪 Snapshot Testing
