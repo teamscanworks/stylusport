@@ -6,10 +6,15 @@ use anchor_parser::display::formatting::strings::{
 use anchor_parser::{display::format_ast, parse_file};
 use std::path::PathBuf;
 
+fn project_root() -> PathBuf {
+    let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+    manifest_dir.parent().unwrap().parent().unwrap().to_path_buf()
+}
+
 // Helper to get path to fixtures
 fn fixture_path(program_name: &str) -> PathBuf {
-    let mut path = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    path.push("tests/fixtures");
+    let mut path = project_root();
+    path.push("examples/");
     path.push(program_name);
     path.push("lib.rs");
     path
