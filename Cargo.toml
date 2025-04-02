@@ -6,6 +6,8 @@ members = [
     "crates/ir_builder",
     "crates/explain_engine",
     "crates/stylus_generator",
-    "crates/utils"
-
+    "crates/utils",
+    "crates/stylusport"
 ]
+
+exclude = []
