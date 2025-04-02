@@ -1,0 +1,22 @@
+---
+source: crates/stylusport/tests/cli_tests.rs
+expression: yaml_content
+---
+program_modules:
+- name: hello_world
+  visibility: ''
+  instructions:
+  - name: initialize
+    visibility: pub
+    parameters:
+    - name: ctx
+      ty: Context<Initialize>
+      is_context: true
+    return_type: Result<()>
+    context_type: Initialize
+account_structs:
+- name: Initialize
+  visibility: pub
+  fields: []
+raw_accounts: []
+source_path: null
