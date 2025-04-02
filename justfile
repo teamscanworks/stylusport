@@ -36,19 +36,31 @@ test:
 
 # Run all tests for a specific crate
 test-crate name:
-    cargo test -p {{name}}
+    cargo test -p {{name}} --all-features
 
-# Run only unit tests
+# Run only unit tests (with unit_test attribute)
 test-unit:
-    cargo test --workspace --lib
+    cargo test --workspace --features "unit_test"
 
-# Run only integration tests
+# Run only module tests (with module_test attribute)
+test-module:
+    cargo test --workspace --features "module_test"
+
+# Run only integration tests (tests in workspace-level tests/)
 test-integration:
     cargo test --workspace --test '*'
 
 # Run only doc tests
 test-doc:
     cargo test --workspace --doc
+
+# Run a specific unit test
+test-unit-one name:
+    cargo test {{name}} --features "unit_test" --no-default-features
+
+# Run a specific module test
+test-module-one name:
+    cargo test {{name}} --features "module_test" --no-default-features
 
 # -------------------------------
 # 📊 Test Coverage
