@@ -1,38 +1,76 @@
-# Compiled build artifacts
+# Rust Build Artifacts
 /target/
+/target/debug/
+/target/debug/**/*.timestamp
+/target/debug/**/*.timestamp.*
 
-# Cargo.lock for libraries (but keep it for applications)
-/Cargo.lock
+# Cargo Specifics
+/Cargo.lock  # Keep for applications, exclude for libraries
+target/
+**/target/
 
-# Rust's custom compiler temp files
+# Rust Compiler Temporary Files
 **/*.rs.bk
+*.pdb
 
-# VSCode settings
+# IDE and Editor Files
 .vscode/
+.idea/
+*.swp
+*~
+.*.kate-swp
+.swp.*
 
-# MacOS system files
-**/.DS_Store
-
-# Windows system files
-Thumbs.db
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 ehthumbs.db
+Thumbs.db
 
-# Rust documentation
-/doc/
-
-# Backup files
+# Development and Debugging
+*.log
+*.tmp
 *.bak
+debug/
+*.dSYM/
 
-# Coverage information
-lcov.info
+# Testing and Coverage
+/coverage/
 *.profraw
-coverage/
 *.gcda
 *.gcno
+lcov.info
+*.profdata
 
+# Documentation Artifacts
+/doc/
+/docs/generated/
 
-# Temporary files
-*.tmp
+# Build Cache and Temporary Files
+.cargo/
+.rustup/
+.cache/
+.ccache/
 
-# Temporary files created by editors
-*~
+# Dependency Artifacts
+*.so
+*.dylib
+*.dll
+
+# CI and Build System Artifacts
+.travis.yml
+.gitlab-ci.yml
+*.out
+
+# Security and Sensitive Information
+*.env
+.env
+*.key
+*.pem
+
+# Specific to this project
+/crates/**/debug/
+/crates/**/debug/**/*.timestamp
