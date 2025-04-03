@@ -27,8 +27,18 @@ build:
     cargo build --workspace
 
 # -------------------------------
+# Run specific stages of the pipeline on some example
+# -------------------------------
+
+# Run normalization on a specific example
+normalize-example name:
+    cargo run -p stylusport -- normalize examples/{{name}}/lib.rs --format=yaml --output=output/{{name}}.norm.yaml
+
+
+# -------------------------------
 # 🧪 Testing
 # -------------------------------
+
 
 # Run all tests in the workspace
 test:
