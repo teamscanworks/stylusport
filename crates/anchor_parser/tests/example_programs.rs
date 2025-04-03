@@ -2,26 +2,26 @@
 mod example_tests {
     use anchor_parser::parse_file;
     use std::path::{Path, PathBuf};
-    
+
     // Helper function to get the path to an example file
     fn example_path(name: &str) -> PathBuf {
         // CARGO_MANIFEST_DIR points to the crate directory (where the crate's Cargo.toml is)
         let crate_root = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".to_string());
-        
+
         // To get to the workspace/project root (assuming your crate is one level deep), go up two levels
         let project_root = Path::new(&crate_root)
             .parent()
             .and_then(|p| p.parent())
             .expect("Could not find project root directory");
-        
+
         // The examples directory is typically in the workspace/project root
         let path = project_root.join("examples").join(name).join("lib.rs");
-        
+
         // Verify the file exists
         if !path.exists() {
             panic!("Example file not found: {:?}", path);
         }
-        
+
         path
     }
 
@@ -50,11 +50,11 @@ mod example_tests {
     // Reusable test executor - only testing basic structure, no constraints
     fn run_example_test(test: &ExampleTest) {
         let path = example_path(&test.name);
-        
+
         // Parse the example program
         let program = parse_file(&path)
             .unwrap_or_else(|e| panic!("Failed to parse {} example: {}", test.name, e));
-        
+
         // Verify program module exists
         assert!(
             program.find_program_module(test.program_module).is_some(),
@@ -62,7 +62,7 @@ mod example_tests {
             test.program_module,
             test.name
         );
-        
+
         // Verify instructions
         let module = program.find_program_module(test.program_module).unwrap();
         for instruction in &test.instructions {
@@ -73,7 +73,7 @@ mod example_tests {
                 test.name
             );
         }
-        
+
         // Verify account structs
         for account_struct in &test.account_structs {
             assert!(
@@ -83,7 +83,7 @@ mod example_tests {
                 test.name
             );
         }
-        
+
         // Verify raw accounts
         for raw_account in &test.raw_accounts {
             assert!(
@@ -94,7 +94,7 @@ mod example_tests {
             );
         }
     }
-    
+
     #[test]
     fn test_hello_world_example() {
         let test = ExampleTest {
@@ -104,7 +104,7 @@ mod example_tests {
             account_structs: vec!["Initialize"],
             raw_accounts: vec![],
         };
-        
+
         run_example_test(&test);
     }
 
@@ -117,7 +117,7 @@ mod example_tests {
             account_structs: vec!["Initialize", "Increment"],
             raw_accounts: vec!["Counter"],
         };
-        
+
         run_example_test(&test);
     }
 
@@ -130,10 +130,10 @@ mod example_tests {
             account_structs: vec!["Initialize", "Deposit"],
             raw_accounts: vec!["Vault"],
         };
-        
+
         run_example_test(&test);
     }
-    
+
     #[test]
     fn test_examples_directory_exists() {
         // Get path to examples directory
@@ -142,16 +142,16 @@ mod example_tests {
             .parent()
             .and_then(|p| p.parent())
             .expect("Could not find project root directory");
-            
+
         let examples_dir = project_root.join("examples");
-        
+
         // Verify examples directory exists
         assert!(
             examples_dir.exists() && examples_dir.is_dir(),
             "Examples directory not found at {:?}",
             examples_dir
         );
-        
+
         // List available examples for debugging
         if let Ok(entries) = std::fs::read_dir(&examples_dir) {
             println!("Available examples:");

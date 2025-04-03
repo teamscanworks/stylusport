@@ -7,10 +7,10 @@ use std::fmt;
 pub enum ParseError {
     /// I/O error
     Io(std::io::Error),
-    
+
     /// Syntax error
     Syntax(syn::Error),
-    
+
     /// Other parse error
     Parse(String),
 }
