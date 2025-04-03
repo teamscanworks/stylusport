@@ -789,6 +789,7 @@ version = "0.1.0"
 name = "stylusport"
 version = "0.1.0"
 dependencies = [
+ "anchor_normalizer",
  "anchor_parser",
  "anyhow",
  "assert_cmd",
