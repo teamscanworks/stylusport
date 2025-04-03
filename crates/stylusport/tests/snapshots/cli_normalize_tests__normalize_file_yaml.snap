@@ -1,0 +1,31 @@
+---
+source: crates/stylusport/tests/cli_normalize_tests.rs
+expression: yaml_content
+---
+id: program:hello_world
+name: hello_world
+modules:
+- name: hello_world
+  visibility: ''
+  instructions:
+  - name: initialize
+    visibility: pub
+    parameters:
+    - name: ctx
+      ty: Context<Initialize>
+      is_context: true
+    return_type: Result<()>
+    account_struct_name: Initialize
+    body: Unknown
+    documentation: null
+  documentation: null
+account_structs:
+- name: Initialize
+  visibility: pub
+  fields: []
+  documentation: null
+raw_accounts: []
+documentation: null
+validation_issues: []
+source_info: null
+schema_version: '1.0'

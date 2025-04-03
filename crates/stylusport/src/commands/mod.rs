@@ -1,9 +1,9 @@
 use crate::error::Error;
 use clap::{ArgMatches, Command as ClapCommand};
 
+pub mod normalize;
 pub mod parse;
 // Future command modules
-// pub mod normalize;
 // pub mod build_ir;
 
 pub trait Command {
@@ -21,6 +21,7 @@ pub trait Command {
 pub fn get_all_commands() -> Vec<Box<dyn Command>> {
     vec![
         Box::new(parse::ParseCommand),
+        Box::new(normalize::NormalizeCommand),
         // Add more commands as they're implemented
         // Box::new(normalize::NormalizeCommand),
     ]

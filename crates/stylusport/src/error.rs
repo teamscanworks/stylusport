@@ -6,6 +6,9 @@ pub enum Error {
     #[error("Parser error: {0}")]
     Parse(#[from] anchor_parser::ParseError),
 
+    #[error("Normalizer error: {0}")]
+    Normalize(#[from] anchor_normalizer::NormalizeError),
+
     #[error("I/O error: {0}")]
     IO(#[from] io::Error),
 

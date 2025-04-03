@@ -21,3 +21,5 @@ pub trait Displayable: Serialize + std::fmt::Debug {
 
 // Implementation for Program types from anchor_parser
 impl Displayable for anchor_parser::Program {}
+// Implementation for NormalizedProgram from anchor_normalizer
+impl Displayable for anchor_normalizer::NormalizedProgram {}
