@@ -2,7 +2,7 @@ use thiserror::Error;
 
 /// Errors that can occur during Anchor program normalization
 #[derive(Error, Debug)]
-pub enum NormalizationError {
+pub enum NormalizeError {
     /// Error extracting information from AST
     #[error("AST extraction error: {0}")]
     AstExtraction(String),
@@ -25,4 +25,4 @@ pub enum NormalizationError {
 }
 
 /// Result type for normalization operations
-pub type Result<T> = std::result::Result<T, NormalizationError>;
+pub type Result<T> = std::result::Result<T, NormalizeError>;

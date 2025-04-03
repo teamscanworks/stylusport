@@ -4,6 +4,8 @@ pub mod model; // This makes the model module public
 pub mod normalization;
 
 use crate::error::Result;
+pub use error::NormalizeError;
+
 use crate::normalization::normalize_program;
 use anchor_parser::model::Program;
 

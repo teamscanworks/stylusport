@@ -2,7 +2,7 @@
 //!
 //! Handles normalization of the top-level Program structure
 
-use crate::error::{NormalizationError, Result};
+use crate::error::{NormalizeError, Result};
 use crate::model::{NormalizedModule, NormalizedProgram, SourceInfo};
 use crate::normalization::{
     account::{normalize_account_struct, normalize_raw_account},
@@ -103,7 +103,7 @@ fn extract_program_name(program: &Program) -> Result<String> {
     }
 
     // If we can't determine a name, return an error
-    Err(NormalizationError::MissingInfo(
+    Err(NormalizeError::MissingInfo(
         "Could not determine program name".to_string(),
     ))
 }
