@@ -1,7 +1,7 @@
+use crate::error::Error;
+use clap::ArgMatches;
 use std::path::PathBuf;
 use std::str::FromStr;
-use clap::ArgMatches;
-use crate::error::Error;
 
 /// Output format options
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -34,21 +34,24 @@ pub struct Config {
 
 impl Config {
     pub fn from_matches(matches: &ArgMatches) -> Result<Self, Error> {
-        let input_path = matches.get_one::<String>("input")
+        let input_path = matches
+            .get_one::<String>("input")
             .ok_or_else(|| Error::MissingArgument("input".to_string()))?;
 
-        let output_path = matches.get_one::<String>("output")
+        let output_path = matches
+            .get_one::<String>("output")
             .map(|s| PathBuf::from(s));
 
-        let format = matches.get_one::<String>("format")
+        let format = matches
+            .get_one::<String>("format")
             .map(|s| OutputFormat::from_str(s))
             .transpose()?
             .unwrap_or(OutputFormat::Yaml);
-    
-            Ok(Config {
-                input_path: PathBuf::from(input_path),
-                output_path,
-                format,
-            })
+
+        Ok(Config {
+            input_path: PathBuf::from(input_path),
+            output_path,
+            format,
+        })
     }
 }

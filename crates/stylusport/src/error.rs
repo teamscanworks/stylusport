@@ -5,19 +5,19 @@ use thiserror::Error;
 pub enum Error {
     #[error("Parser error: {0}")]
     Parse(#[from] anchor_parser::ParseError),
-    
+
     #[error("I/O error: {0}")]
     IO(#[from] io::Error),
-    
+
     #[error("Invalid format: {0}")]
     InvalidFormat(String),
-    
+
     #[error("Missing required argument: {0}")]
     MissingArgument(String),
-    
+
     #[error("Unknown command: {0}")]
     UnknownCommand(String),
-    
+
     #[error("Serialization error: {0}")]
     Serialization(String),
 }

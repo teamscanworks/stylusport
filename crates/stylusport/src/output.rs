@@ -1,7 +1,7 @@
-use std::io::Write;
-use serde::Serialize;
 use crate::config::OutputFormat;
 use crate::error::Error;
+use serde::Serialize;
+use std::io::Write;
 
 /// Trait for types that can be displayed in different formats
 pub trait Displayable: Serialize + std::fmt::Debug {

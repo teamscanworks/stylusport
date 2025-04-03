@@ -1,5 +1,5 @@
-use clap::{ArgMatches, Command as ClapCommand};
 use crate::error::Error;
+use clap::{ArgMatches, Command as ClapCommand};
 
 pub mod parse;
 // Future command modules
@@ -9,10 +9,10 @@ pub mod parse;
 pub trait Command {
     /// Returns the name of the command (used in CLI)
     fn name(&self) -> &'static str;
-    
+
     /// Builds the clap subcommand for this command
     fn build_subcommand(&self) -> ClapCommand;
-    
+
     /// Executes the command with the given arguments
     fn execute(&self, matches: &ArgMatches) -> Result<(), Error>;
 }
